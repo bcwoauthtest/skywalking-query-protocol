@@ -22,6 +22,7 @@ type BsInfo {
 
 type BsInfos {
     infos: [BsInfo!]!
+    tenantName: String!
     total: Int!
 }
 
