@@ -62,13 +62,13 @@ type Node {
 type Call {
     source: ID!
     # The protocol and tech stack used at source side in this distributed call
-    sourceComponents: [ID!]!
+    sourceComponents: [ID!]
     target: ID!
     # The protocol and tech stack used at target side in this distributed call
-    targetComponents: [ID!]!
+    targetComponents: [ID!]
     id: ID!
     # The detect Points of this distributed call.
-    detectPoints: [DetectPoint!]!
+    detectPoints: [DetectPoint!]
 }
 
 enum NodeType {
