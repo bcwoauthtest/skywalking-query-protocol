@@ -55,6 +55,9 @@ type Node {
     nodeId: String
     host: String
     ciId: String
+    agentType: String
+    haType: String
+    hostIP: String
 }
 
 # The Call represents a directed distributed call,
@@ -80,6 +83,7 @@ extend type Query {
     getGlobalTopology(tenantId: String, bsIds: String,tsIds: String, duration: Duration!): Topology
     getTopologyWrappedByBs(tenantId: String, bsIds: String, duration: Duration!): Topology
     getTopologyWrappedByTs(tenantId: String, bsIds: String, duration: Duration!): Topology
+    getTopologyWrappedByNode(tenantId: String, bsIds: String, duration: Duration!): Topology
     # Query the topology, based on the given service
     getServiceTopology(serviceId: ID!, duration: Duration!): Topology
     # Query the topology, based on the given endpoint

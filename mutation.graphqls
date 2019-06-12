@@ -43,4 +43,9 @@ extend type Mutation {
      setUserDefineTsNodeName(tsId: String!, userDefineTsNodeName: String!): StatusCode!
      #Set userDefTsNodeType
      setUserDefineTsNodeType(tsId: String!, userDefineTsNodeType: String!): StatusCode!
+
+     #Set userDefNodeNodeName
+     setUserDefineNodeNodeName(tsId: String!, userDefineNodeNodeName: String!): StatusCode!
+     #Set userDefNodeNodeType
+     setUserDefineNodeNodeType(tsId: String!, userDefineNodeNodeType: String!): StatusCode!
 }
