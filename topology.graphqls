@@ -58,6 +58,7 @@ type Node {
     agentType: String
     haType: String
     hostIP: String
+    bsName: String
 }
 
 # The Call represents a directed distributed call,
@@ -80,10 +81,10 @@ enum NodeType {
 
 extend type Query {
     # Query the global topology
-    getGlobalTopology(tenantId: String, bsIds: String,tsIds: String, duration: Duration!): Topology
+    getGlobalTopology(tenantId: String, bsIds: String,tsIds: String,nodeIds: String, duration: Duration!): Topology
     getTopologyWrappedByBs(tenantId: String, bsIds: String, duration: Duration!): Topology
     getTopologyWrappedByTs(tenantId: String, bsIds: String, duration: Duration!): Topology
-    getTopologyWrappedByNode(tenantId: String, bsIds: String, duration: Duration!): Topology
+    getTopologyWrappedByNode(tenantId: String, bsIds: String,tsIds: String, duration: Duration!): Topology
     # Query the topology, based on the given service
     getServiceTopology(serviceId: ID!, duration: Duration!): Topology
     # Query the topology, based on the given endpoint
