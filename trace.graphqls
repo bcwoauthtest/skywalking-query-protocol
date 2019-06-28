@@ -32,6 +32,7 @@ type BasicTrace {
 
 # Represent the conditions used for query TraceBrief
 input TraceQueryCondition {
+    tenantId: String!
     # The value of 0 means all services.
     serviceId: ID
     serviceInstanceId: ID

@@ -33,5 +33,5 @@ type Alarms {
 
 extend type Query {
     getAlarmTrend(duration: Duration!): AlarmTrend!
-    getAlarm(duration: Duration!, scope: Scope, keyword: String, paging: Pagination!): Alarms
+    getAlarm(tenantId: String!, duration: Duration!, scope: Scope, keyword: String, paging: Pagination!): Alarms
 }

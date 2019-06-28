@@ -60,8 +60,7 @@ type Database {
 }
 
 extend type Query {
-    getGlobalBrief(duration: Duration!): ClusterBrief
-
+    getGlobalBrief(tenantId: String!, duration: Duration!): ClusterBrief
     # Service related meta info.
     getAllServices(isAddress: String, tenantId: String, bsIds: String, duration: Duration!): [Service!]!
     searchServices(duration: Duration!, keyword: String!): [Service!]!
