@@ -50,6 +50,26 @@ input TraceQueryCondition {
     paging: Pagination!
 }
 
+input CallTraceQueryCondition {
+     tenantId: String
+     # The value of 0 means all services.
+     sourceServiceId: ID
+     targetServiceId: ID
+     serviceInstanceId: ID
+     traceId: String
+     endpointId: ID
+     endpointName: String
+     # The time range of traces started
+     queryDuration: Duration
+     # The mix time of trace
+     minTraceDuration: Int
+     # The max time of trace
+     maxTraceDuration: Int
+     traceState: TraceState!
+     queryOrder: QueryOrder!
+     paging: Pagination!
+}
+
 enum TraceState {
     ALL
     SUCCESS
@@ -117,5 +137,6 @@ type LogEntity {
 
 extend type Query {
     queryBasicTraces(condition: TraceQueryCondition): TraceBrief
+    queryCallTraces(condition: CallTraceQueryCondition): TraceBrief
     queryTrace(traceId: ID!): Trace
 }

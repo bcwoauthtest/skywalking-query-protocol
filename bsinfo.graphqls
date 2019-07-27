@@ -28,4 +28,5 @@ type BsInfos {
 
 extend type Query {
     getBsInfo(tenantId: String!): BsInfos
+    getServerStatus(value: Int): StatusCode!
 }
