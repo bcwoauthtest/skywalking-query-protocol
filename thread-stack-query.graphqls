@@ -1,0 +1,126 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+ type ProfilerResults {
+     results : [ProfilerResult!]!
+     total: Int!
+ }
+
+ type ProfilerResult {
+     service: String
+     serviceDefName : String
+     id : String
+     serviceInstance  : String
+     instancePid  : String
+     executeTime  : String
+     executor  : String
+     threadCount  : String
+     processMemUsage  : String
+     processCpuUsage  : String
+     processCpuTime  : String
+     round  : String
+     isExistDeadLock  : String
+     deadLockCount : String
+ }
+
+ type Trends {
+     results : [Trend!]!
+ }
+
+ type Trend {
+    count : Int!
+    time : String!
+ }
+
+
+ type ThreadInfoResults {
+     results : [ThreadInfoResult!]!
+     total : Int!
+ }
+
+ type ThreadInfoResult {
+     threadId : String
+     threadName : String
+     cpuUsage : String
+     memUsage : String
+     cpuTime : String
+     status : String
+     callStack : String
+ }
+
+ type ThreadStatusStats {
+      results : [ThreadStatusStat!]!
+  }
+
+type ThreadStatusStat {
+    count : Int!
+    status : String!
+}
+
+type LockDependencyInfo {
+    threadInfos: [ThreadInfoResult]
+    lockInfo: LockInfoResult
+}
+
+type CombinedStackInfo {
+    threadCount : Int!
+    state : String!
+    names : String!
+    stacks : String!
+}
+
+type LockInfoResult {
+    lockId : String!
+    lockTid : String
+    lockNid : String
+    state : String
+    owned : String
+}
+
+type DeadLockInfo {
+    id : String!
+    name : String
+    daemon : String
+    state : String
+    stackTrace : String
+    lockedMonitors : String
+    pendingMonitor : String
+    info : String
+    cpu : String
+    time : String
+}
+
+extend type Query {
+   # 查询剖析结果列表
+   getProfilerResults(serviceSequence: String!, serviceInstanceSequence: String, queryDuration:BsDuration!, paging: Pagination!) : ProfilerResults
+   # 查询线程数趋势
+   getThreadCountTrends(serviceSequence: String!, serviceInstanceSequence: String, queryDuration:BsDuration!) : [Trend!]!
+   # 查询剖析结果中的线程信息
+   getThreadInfos(threadProfilerId: String!, orderByColumn: String, queryOrder: String, paging: Pagination!) : ThreadInfoResults
+   # 查询剖析结果中线程按状态统计的信息
+   getThreadStatusStat(threadProfilerId: String!) : [ThreadStatusStat!]!
+   # 查询线程剖析的执行状态
+   getProfilerExecuteStatus(threadProfilerId: String!) : StatusCode!
+
+   # 查询锁依赖信息
+   getLockDependencyInfo(threadProfilerId: String!, threadId: String!) : [LockDependencyInfo]
+
+   # 查询合并的线程堆栈信息
+   getCombinedStackInfo(threadProfilerId: String!) : [CombinedStackInfo]!
+
+    # 查询死锁信息
+   getDeadLockInfo(threadProfilerId: String!, threadId: String) : [DeadLockInfo]
+}

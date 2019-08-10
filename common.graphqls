@@ -81,6 +81,10 @@ input Pagination {
     needTotal: Boolean
 }
 
+type ResultId {
+    id: String!
+}
+
 enum Language {
     # For not language based agent, the language is impossible to tell.
     UNKNOWN

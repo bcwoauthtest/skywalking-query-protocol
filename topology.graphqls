@@ -36,7 +36,7 @@ type Node {
     # The global id of each node,
     # 1. Service id
     # 2. Endpoint id
-    id: ID!
+    id: String!
     # The literal name of the #id.
     name: String!
     userDefName: String
