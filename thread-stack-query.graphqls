@@ -58,6 +58,7 @@
      memUsage : String
      cpuTime : String
      status : String
+     state: String
      callStack : String
  }
 
@@ -109,7 +110,7 @@ extend type Query {
    # 查询线程数趋势
    getThreadCountTrends(serviceSequence: String!, serviceInstanceSequence: String, queryDuration:BsDuration!) : [Trend!]!
    # 查询剖析结果中的线程信息
-   getThreadInfos(threadProfilerId: String!, orderByColumn: String, queryOrder: String, paging: Pagination!) : ThreadInfoResults
+   getThreadInfos(threadProfilerId: String!, threadName: String, state: String,threadId: String, orderByColumn: String, queryOrder: String, paging: Pagination!) : ThreadInfoResults
    # 查询剖析结果中线程按状态统计的信息
    getThreadStatusStat(threadProfilerId: String!) : [ThreadStatusStat!]!
    # 查询线程剖析的执行状态
