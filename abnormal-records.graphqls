@@ -19,24 +19,31 @@
 # the top N record query is just do order and get the list.
 
 # Top N query is based on latency order by given service and metric name.
-input TopNRecordsCondition {
+input AbnormalRecordsCondition {
     sourceServiceId: ID
     databaseServiceId: ID
     metricName: String!
-    topN: Int!
-    # Top N order, ASC or DES.
-    order: Order!
     duration: Duration!
+    orderByColumn: String
+    queryOrder: String
+    paging: Pagination!
 }
 
-type TopNRecord {
+type AbnormalRecord {
     statement: String
-    latency: Long!
+    errorKind: String
+    stack: String
+    message: String
     # Have value, Only if the record has the trace id.
-    # Slow record
+    # abnormal record
     traceId: String
 }
 
+type AbnormalRecords {
+     results : [AbnormalRecord!]!
+     total : Int!
+ }
+
 extend type Query {
-    getTopNRecords(condition: TopNRecordsCondition!): [TopNRecord!]!
+    getAbnormalRecords(condition: AbnormalRecordsCondition!): AbnormalRecords
 }
