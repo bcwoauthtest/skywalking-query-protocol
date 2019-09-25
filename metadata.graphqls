@@ -26,7 +26,9 @@ type ClusterBrief {
 type Service {
     id: ID!
     name: String!
+    type: String
     userDefName: String
+    userDefNodeType: String
 }
 
 type ServiceInstance {
@@ -79,4 +81,6 @@ extend type Query {
 
     # Database related meta info.
     getAllDatabases(isDurationUseful: Int,duration: Duration!): [Database!]!
+     # get all databases accessed by service with serviceId
+    getServiceDatabases(dbType: String,serviceId: Int!,duration: Duration!): [Service]!
 }
